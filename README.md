@@ -24,12 +24,12 @@ run:
   op:
     pkg: { ref: github.com/opspec-pkgs/azure.servicebus.create#VERSION }
     inputs: 
-      subscriptionId: ~
-      azureUsername: ~
-      azurePassword: ~
-      name: ~
-      resourceGroup: ~
-      location: ~
-      sku: ~
-      messagingUnits: ~
+      subscriptionId:
+      azureUsername:
+      azurePassword:
+      name:
+      resourceGroup:
+      location:
+      sku:
+      messagingUnits:
 ```

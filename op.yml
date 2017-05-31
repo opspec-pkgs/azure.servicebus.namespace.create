@@ -37,15 +37,12 @@ inputs:
       constraints: { enum: [ 1, 2, 4 ] }
       description: change only when selecting Premium serviceBusSku
       default: 1
-  template:
-    file:
-      default: ./template.json
 run:
   serial:
     - container:
         image: { ref: 'alpine' }
         cmd: [ /cmd.sh ]
-        files: { /cmd.sh, /parametersTemplate.json, /parameters.json: parameters }
+        files: { /cmd.sh, /template.json, /template.json: template, /parametersTemplate.json, /parameters.json: parameters }
         envVars: { name, location, sku, messagingUnits }
     - op:
         pkg: { ref: github.com/opspec-pkgs/azure.group.deployment.create#0.0.2 }
