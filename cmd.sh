@@ -17,3 +17,6 @@ case "$sku" in
 
 echo "substituting environment variables in parameters file"       
 cat /parametersTemplate.json | envsubst > /parameters.json
+
+# @todo: remove once opspec supports explicit binding files as op inputs
+cat /template.json > /templateFile.json
