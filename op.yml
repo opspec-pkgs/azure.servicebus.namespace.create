@@ -37,6 +37,9 @@ inputs:
       constraints: { enum: [ 1, 2, 4 ] }
       description: change only when selecting Premium serviceBusSku
       default: 1
+  template:
+    file:
+      default: /template.json
 run:
   serial:
     - container:
@@ -53,4 +56,4 @@ run:
           resourceGroup:
           name:
           parameters:
-          template: /template.json
+          template:
