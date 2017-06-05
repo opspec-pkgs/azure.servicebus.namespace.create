@@ -42,7 +42,7 @@ run:
     - container:
         image: { ref: 'alpine' }
         cmd: [ /cmd.sh ]
-        files: { /cmd.sh, /template.json, /templateFile.json: template, /parametersTemplate.json, /parameters.json: parameters }
+        files: { /cmd.sh, /parametersTemplate.json, /parameters.json: parameters }
         envVars: { name, location, sku, messagingUnits }
     - op:
         pkg: { ref: github.com/opspec-pkgs/azure.group.deployment.create#0.0.2 }
@@ -53,4 +53,4 @@ run:
           resourceGroup:
           name:
           parameters:
-          template: 
+          template: /template.json
