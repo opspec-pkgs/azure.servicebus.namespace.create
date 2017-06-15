@@ -1,8 +1,5 @@
 #!/usr/bin/env sh
 
-echo "installing deps"
-apk -U add gettext
-
 case "$sku" in
           Basic)
             export sku=1

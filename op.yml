@@ -5,54 +5,64 @@ inputs:
     string:
       constraints: { minLength: 1 }
       description: id of azure subscription
-  azureUsername:
-    string:
-      constraints: { format: email }
-      description: email address of azure account
-  azurePassword:
+  loginId:
     string:
       constraints: { minLength: 1 }
-      description: password of azure account
+      description: id of user, service principal, or app to login with
+  loginSecret:
+    string:
+      constraints: { minLength: 1 }
+      description: secret of user, service principal, or app to login with
       isSecret: true
   name:
     string:
       constraints: { minLength: 1 }
-      description: name of the service bus namespace
+      description: name for the provisioned servicebus
   resourceGroup:
     string:
       constraints: { minLength: 1 }
-      description: name of azure resource group
+      description: resource group for the provisioned servicebus
   location:
     string:
       constraints: { minLength: 1 }
-      description: location of provisioned service bus
+      description: location for the provisioned servicebus
       default: westus
   sku:
     string:
       constraints: { enum: [ Basic, Standard, Premium] }
-      description: The messaging tier for service bus namespace
+      description: The messaging tier for the provisioned servicebus
       default: Standard
   messagingUnits:
     number:
       constraints: { enum: [ 1, 2, 4 ] }
       description: change only when selecting Premium serviceBusSku
       default: 1
+  loginTenantId:
+    string:
+      constraints: { minLength: 1 }
+      description: tenant id of user, service principal, or app to login with
+      default: " "
+  loginType:
+    string:
+      constraints: { enum: [user, sp]}
+      description: type of login; 'user' (default) or 'sp' for service principal
+      default: user
   template:
     file:
       default: /template.json
 run:
   serial:
     - container:
-        image: { ref: 'alpine' }
+        image: { ref: 'opspecpkgs/azure.servicebus.create:2.0.0' }
         cmd: [ /cmd.sh ]
         files: { /cmd.sh, /parametersTemplate.json, /parameters.json: parameters }
         envVars: { name, location, sku, messagingUnits }
     - op:
-        pkg: { ref: github.com/opspec-pkgs/azure.group.deployment.create#0.0.2 }
+        pkg: { ref: github.com/opspec-pkgs/azure.group.deployment.create#1.0.0 }
         inputs: 
           subscriptionId:
-          username: azureUsername
-          password: azurePassword
+          loginId:
+          loginSecret:
           resourceGroup:
           name:
           parameters:

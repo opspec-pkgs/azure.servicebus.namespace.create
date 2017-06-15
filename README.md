@@ -25,11 +25,15 @@ run:
     pkg: { ref: github.com/opspec-pkgs/azure.servicebus.create#VERSION }
     inputs: 
       subscriptionId:
-      azureUsername:
-      azurePassword:
+      loginId:
+      loginSecret:
       name:
       resourceGroup:
+      # begin optional args
       location:
       sku:
       messagingUnits:
+      loginTenantId:
+      loginType:
+      # end optional args
 ```
