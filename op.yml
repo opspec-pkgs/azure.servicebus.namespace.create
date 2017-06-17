@@ -1,5 +1,5 @@
 name: github.com/opspec-pkgs/azure.servicebus.create
-description: creates an azure servicebus instance (if doesn't already exist)
+description: creates an azure servicebus (if doesn't already exist)
 inputs:
   subscriptionId:
     string:
