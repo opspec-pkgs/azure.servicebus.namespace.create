@@ -1,5 +1,5 @@
-name: github.com/opspec-pkgs/azure.servicebus.create
-description: creates an azure servicebus (if doesn't already exist)
+name: github.com/opspec-pkgs/azure.servicebus.namespace.create
+description: creates an azure servicebus namespace (if doesn't already exist)
 inputs:
   subscriptionId:
     string:
@@ -14,6 +14,10 @@ inputs:
       constraints: { minLength: 1 }
       description: secret of user, service principal, or app to login with
       isSecret: true
+  loginTenantId:
+    string:
+      constraints: { minLength: 1 }
+      description: tenant id of user, service principal, or app to login with
   name:
     string:
       constraints: { minLength: 1 }
@@ -27,45 +31,34 @@ inputs:
       constraints: { minLength: 1 }
       description: location for the provisioned servicebus
       default: westus
-  sku:
-    string:
-      constraints: { enum: [ Basic, Standard, Premium] }
-      description: The messaging tier for the provisioned servicebus
-      default: Standard
-  messagingUnits:
-    number:
-      constraints: { enum: [ 1, 2, 4 ] }
-      description: change only when selecting Premium serviceBusSku
-      default: 1
-  loginTenantId:
-    string:
-      constraints: { minLength: 1 }
-      description: tenant id of user, service principal, or app to login with
-      default: " "
   loginType:
     string:
       constraints: { enum: [user, sp]}
       description: type of login; 'user' (default) or 'sp' for service principal
       default: user
-  template:
-    file:
-      default: /template.json
+  messagingUnits:
+    number:
+      constraints: { enum: [ 1, 2, 4 ] }
+      description: change only when selecting Premium sku
+      default: 1
+  sku:
+    string:
+      constraints: { enum: [ Basic, Standard, Premium] }
+      description: The messaging tier for the provisioned servicebus
+      default: Standard
 run:
-  serial:
-    - container:
-        image: { ref: 'opspecpkgs/azure.servicebus.create:2.0.0' }
-        cmd: [ /cmd.sh ]
-        files: { /cmd.sh, /parametersTemplate.json, /parameters.json: parameters }
-        envVars: { name, location, sku, messagingUnits }
-    - op:
-        pkg: { ref: github.com/opspec-pkgs/azure.group.deployment.create#1.0.0 }
-        inputs: 
-          subscriptionId:
-          loginId:
-          loginSecret:
-          resourceGroup:
-          name:
-          parameters:
-          template:
-          loginTenantId:
-          loginType:
+  container:
+    image: { ref: 'opspecpkgs/azure.servicebus.namespace.create:2.0.0' }
+    cmd: [node, /index.js]
+    files: { /index.js }
+    envVars:
+      subscriptionId:
+      loginId:
+      loginSecret:
+      loginTenantId:
+      name:
+      resourceGroup:
+      location:
+      loginType:
+      messagingUnits:
+      sku:
