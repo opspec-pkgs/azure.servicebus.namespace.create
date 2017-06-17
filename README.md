@@ -1,5 +1,5 @@
 # problem statement
-creates an azure servicebus instance (if doesn't already exist)
+creates an azure servicebus (if doesn't already exist)
 
 # example usage
 
