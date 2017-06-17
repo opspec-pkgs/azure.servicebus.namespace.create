@@ -46,6 +46,7 @@ inputs:
       constraints: { enum: [ Basic, Standard, Premium] }
       description: The messaging tier for the provisioned servicebus
       default: Standard
+version: 2.0.0
 run:
   container:
     image: { ref: 'opspecpkgs/azure.servicebus.namespace.create:2.0.0' }
