@@ -27,7 +27,7 @@ const createOrUpdate = async (credentials) => {
     console.log('creating/updating namespace');
     const azureArmSb = new AzureArmSb(credentials, process.env.subscriptionId);
 
-    // see https://github.com/Azure/azure-sdk-for-node/blob/master/lib/services/serviceBusManagement2/lib/operations/namespaces.js#L3234
+    // see https://github.com/Azure/azure-sdk-for-node/blob/7cc2b434f75f68e74b72b8f89b3e43e7cafbe5d4/lib/services/serviceBusManagement2/lib/operations/namespaces.js#L3171
     const options = {
         location: process.env.location,
         sku:{
