@@ -20,22 +20,21 @@ opctl run github.com/opspec-pkgs/azure.servicebus.namespace.create#VERSION
 ## compose
 
 ```yaml
-run:
-  op:
-    pkg: { ref: github.com/opspec-pkgs/azure.servicebus.namespace.create#VERSION }
-    inputs: 
-      subscriptionId:
-      loginId:
-      loginSecret:
-      loginTenantId:
-      name:
-      resourceGroup:
-      # begin optional args
-      location:
-      loginType:
-      messagingUnits:
-      sku:
-      # end optional args
+op:
+  pkg: { ref: github.com/opspec-pkgs/azure.servicebus.namespace.create#VERSION }
+  inputs: 
+    subscriptionId:
+    loginId:
+    loginSecret:
+    loginTenantId:
+    name:
+    resourceGroup:
+    # begin optional args
+    location:
+    loginType:
+    messagingUnits:
+    sku:
+    # end optional args
 ```
 
 # Support
