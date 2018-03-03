@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/opspec-pkgs/azure.servicebus.namespace.create.svg?branch=master)](https://travis-ci.org/opspec-pkgs/azure.servicebus.namespace.create)
 
+<img src="icon.svg" alt="icon" height="100px">
 
 # Problem statement
 
@@ -29,12 +30,12 @@ opctl run github.com/opspec-pkgs/azure.servicebus.namespace.create#2.0.0
 op:
   pkg: { ref: github.com/opspec-pkgs/azure.servicebus.namespace.create#2.0.0 }
   inputs:
+    subscriptionId:
     loginId:
     loginSecret:
     loginTenantId:
     name:
     resourceGroup:
-    subscriptionId:
     # params w/ default
     location:
     loginType:
