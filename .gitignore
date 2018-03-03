@@ -1,2 +1,5 @@
-### JebBrains
+# Jetbrains
 .idea/
+
+# opctl
+*args*.yml
